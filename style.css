@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#grid-container {
+    border: 1px solid black;
+    height: 1000px;
+    width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.grid-box {
+    border: 1px solid gray;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
