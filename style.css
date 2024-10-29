@@ -8,6 +8,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    gap: 4rem;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 #grid-container {
@@ -20,9 +27,13 @@ body {
 }
 
 .grid-box {
-    border: 1px solid gray;
-    height: 100px;
-    width: 100px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
     box-sizing: border-box;
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
 }

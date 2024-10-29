@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+    <div class='options'>
+        <button type="button" id="reset-button">Reset</button>
+        <button type="button" id="rainbow-button">Change to Rainbow</button>
+        <button type="button" id="black-button">Change to Black</button>
+        <button type="button" id="hide-grid-button">Hide Gridlines</button>
+        <div class="slider">
+            <label for="grid-size-slider">Grid size: </label>
+            <input type="range" id="grid-size-slider" min="1" max="100" value="10">
+            <span id="grid-size-label">10 x 10</span>
+        </div>
+    </div>
     <div id="grid-container"></div>
 </body>
 </html>
