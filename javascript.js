@@ -1,19 +1,25 @@
 const DEFAULTSIZE      = 10;
-const DEFAULTCOLORMODE = 'black';
+const DEFAULTPAINTMODE = 'black';
 const DEFAULTGRIDMODE  = 'on';
 
-let colorMode = DEFAULTCOLORMODE;
+let paintMode = DEFAULTPAINTMODE;
 let gridSize  = DEFAULTSIZE;
 let gridMode  = DEFAULTGRIDMODE;
 
-let resetButton      = document.getElementById('reset-button');
+// painting modes
 let rainbowButton    = document.getElementById('rainbow-button');
 let blackButton      = document.getElementById('black-button');
+let eraserButton     = document.getElementById('eraser-button');
+
+rainbowButton.addEventListener('click', () => setPaintMode('rainbow'));
+blackButton.addEventListener('click', () => setPaintMode('black'));
+eraserButton.addEventListener('click', () => setPaintMode('erase'));
+
+// grid options
+let resetButton      = document.getElementById('reset-button');
 let toggleGridButton = document.getElementById('toggle-grid-button');
 
 resetButton.addEventListener('click', resetGrid);
-rainbowButton.addEventListener('click', changeToRainbow);
-blackButton.addEventListener('click', changeToBlack);
 toggleGridButton.addEventListener('click', toggleGrid);
 
 const gridContainer = document.getElementById('grid-container');
@@ -35,7 +41,7 @@ function setupGrid(size){
     
     for (let i = 0; i < size * size; i++){
         const box = document.createElement('div');
-        box.addEventListener('mouseover', changeColor);
+        box.addEventListener('mouseover', paintSquare);
         box.classList.add('grid-box');
         box.style.width = side + 'px';
         box.style.height = side + 'px';
@@ -43,11 +49,13 @@ function setupGrid(size){
     }
 }
 
-function changeColor(event){
-    if (colorMode == 'black'){
+function paintSquare(event){
+    if (paintMode == 'black'){
         event.target.style.backgroundColor = 'black';
-    } else if (colorMode == 'rainbow'){
+    } else if (paintMode == 'rainbow'){
         event.target.style.backgroundColor = getRandomColor();
+    } else if (paintMode == 'erase'){
+        event.target.style.backgroundColor = 'white';
     }
 }
 
@@ -86,10 +94,6 @@ function toggleGrid(){
     }
 }
 
-function changeToRainbow(){
-    colorMode = 'rainbow';
-}
-
-function changeToBlack(){
-    colorMode = 'black';
+function setPaintMode(mode){
+    paintMode = mode;
 }
