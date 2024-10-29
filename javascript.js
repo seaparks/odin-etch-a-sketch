@@ -1,19 +1,20 @@
-console.log("hello, world!");
-
 const DEFAULTSIZE      = 10;
 const DEFAULTCOLORMODE = 'black';
+const DEFAULTGRIDMODE  = 'on';
 
 let colorMode = DEFAULTCOLORMODE;
 let gridSize  = DEFAULTSIZE;
+let gridMode  = DEFAULTGRIDMODE;
 
-let resetButton    = document.getElementById('reset-button');
-let rainbowButton  = document.getElementById('rainbow-button');
-let blackButton    = document.getElementById('black-button');
-let hideGridButton = document.getElementById('hide-grid-button');
+let resetButton      = document.getElementById('reset-button');
+let rainbowButton    = document.getElementById('rainbow-button');
+let blackButton      = document.getElementById('black-button');
+let toggleGridButton = document.getElementById('toggle-grid-button');
 
 resetButton.addEventListener('click', resetGrid);
 rainbowButton.addEventListener('click', changeToRainbow);
 blackButton.addEventListener('click', changeToBlack);
+toggleGridButton.addEventListener('click', toggleGrid);
 
 const gridContainer = document.getElementById('grid-container');
 const slider = document.getElementById('grid-size-slider');
@@ -67,6 +68,22 @@ function clearGrid() {
 function resetGrid() {
     clearGrid();
     setupGrid(gridSize);
+    gridMode = 'on';
+}
+
+function toggleGrid(){
+    const gridBoxes = document.querySelectorAll('.grid-box');
+    if (gridMode == 'on'){
+        gridBoxes.forEach(box => {
+            box.style.border = 'none';
+        });
+        gridMode = 'off';
+    } else {
+        gridBoxes.forEach(box =>{
+            box.style.border = '1px solid lightgray';
+        });
+        gridMode = 'on';
+    }
 }
 
 function changeToRainbow(){
