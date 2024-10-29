@@ -9,16 +9,28 @@
 </head>
 <body>
     <div class='options'>
-        <button type="button" id="reset-button">Reset</button>
-        <button type="button" id="rainbow-button">Change to Rainbow</button>
-        <button type="button" id="black-button">Change to Black</button>
-        <button type="button" id="eraser-button">Eraser</button>
-        <button type="button" id="toggle-grid-button">Toggle Gridlines</button>
-        <div class="slider">
-            <label for="grid-size-slider">Grid size: </label>
-            <input type="range" id="grid-size-slider" min="1" max="100" value="10">
-            <span id="grid-size-label">10 x 10</span>
+
+        <div class="paint-modes">
+            <div class="custom-color">
+                <label for="color-picker">Choose a specific color:</label>
+                <input type="color" id="color-picker" name="color-picker" value="#000000">
+            </div>                    
+
+            <button type="button" id="rainbow-button">Change to Rainbow</button>
+            <button type="button" id="black-button">Change to Black</button>
+            <button type="button" id="eraser-button">Eraser</button>
         </div>
+
+        <div class="'grid-options">
+            <button type="button" id="reset-button">Reset</button>
+            <button type="button" id="toggle-grid-button">Toggle Gridlines</button>
+            <div class="slider">
+                <label for="grid-size-slider">Grid size: </label>
+                <input type="range" id="grid-size-slider" min="1" max="100" value="10">
+                <span id="grid-size-label">10 x 10</span>
+            </div>
+        </div>
+
     </div>
     <div id="grid-container"></div>
 </body>

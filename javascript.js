@@ -2,9 +2,10 @@ const DEFAULTSIZE      = 10;
 const DEFAULTPAINTMODE = 'black';
 const DEFAULTGRIDMODE  = 'on';
 
-let paintMode = DEFAULTPAINTMODE;
-let gridSize  = DEFAULTSIZE;
-let gridMode  = DEFAULTGRIDMODE;
+let paintMode  = DEFAULTPAINTMODE;
+let paintColor = '#000000'; 
+let gridSize   = DEFAULTSIZE;
+let gridMode   = DEFAULTGRIDMODE;
 
 // painting modes
 let rainbowButton    = document.getElementById('rainbow-button');
@@ -14,6 +15,9 @@ let eraserButton     = document.getElementById('eraser-button');
 rainbowButton.addEventListener('click', () => setPaintMode('rainbow'));
 blackButton.addEventListener('click', () => setPaintMode('black'));
 eraserButton.addEventListener('click', () => setPaintMode('erase'));
+
+const colorPicker = document.getElementById('color-picker');
+colorPicker.addEventListener('input', (event) => setPaintMode(event.target.value));
 
 // grid options
 let resetButton      = document.getElementById('reset-button');
@@ -34,8 +38,6 @@ slider.addEventListener("input", () => {
 
 setupGrid(DEFAULTSIZE);
 
-
-
 function setupGrid(size){
     let side = 1000 / size;
     
@@ -50,12 +52,15 @@ function setupGrid(size){
 }
 
 function paintSquare(event){
-    if (paintMode == 'black'){
+    if (paintMode === 'black'){
         event.target.style.backgroundColor = 'black';
-    } else if (paintMode == 'rainbow'){
+
+    } else if (paintMode === 'rainbow'){
         event.target.style.backgroundColor = getRandomColor();
-    } else if (paintMode == 'erase'){
+    } else if (paintMode === 'erase'){
         event.target.style.backgroundColor = 'white';
+    } else if (paintMode === 'custom'){
+        event.target.style.backgroundColor = paintColor;
     }
 }
 
@@ -94,6 +99,11 @@ function toggleGrid(){
     }
 }
 
-function setPaintMode(mode){
-    paintMode = mode;
+function setPaintMode(modeOrColor){
+    if (modeOrColor === 'rainbow' || modeOrColor === 'erase' || modeOrColor === 'black'){
+        paintMode = modeOrColor
+    } else {
+        paintMode  = 'custom';
+        paintColor = modeOrColor;
+    }
 }

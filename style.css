@@ -11,7 +11,9 @@ body {
     gap: 4rem;
 }
 
-.options {
+.options,
+.paint-modes,
+.grid-options {
     display: flex;
     flex-direction: column;
     gap: 2rem;
