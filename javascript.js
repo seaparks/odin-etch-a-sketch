@@ -2,10 +2,11 @@ const DEFAULTSIZE      = 10;
 const DEFAULTPAINTMODE = 'black';
 const DEFAULTGRIDMODE  = 'on';
 
-let paintMode  = DEFAULTPAINTMODE;
-let paintColor = '#000000'; 
-let gridSize   = DEFAULTSIZE;
-let gridMode   = DEFAULTGRIDMODE;
+let paintMode   = DEFAULTPAINTMODE;
+let paintColor  = '#000000'; 
+let gridSize    = DEFAULTSIZE;
+let gridMode    = DEFAULTGRIDMODE;
+let isMouseDown = false; 
 
 // painting modes
 let rainbowButton    = document.getElementById('rainbow-button');
@@ -36,6 +37,10 @@ slider.addEventListener("input", () => {
     resetGrid();
 });
 
+// listen everywhere for the mouse clicks
+document.addEventListener('mousedown', () => isMouseDown = true);
+document.addEventListener('mouseup', () => isMouseDown = false);
+
 setupGrid(DEFAULTSIZE);
 
 function setupGrid(size){
@@ -44,6 +49,7 @@ function setupGrid(size){
     for (let i = 0; i < size * size; i++){
         const box = document.createElement('div');
         box.addEventListener('mouseover', paintSquare);
+        box.addEventListener('mousedown', paintSquare)
         box.classList.add('grid-box');
         box.style.width = side + 'px';
         box.style.height = side + 'px';
@@ -52,15 +58,18 @@ function setupGrid(size){
 }
 
 function paintSquare(event){
-    if (paintMode === 'black'){
-        event.target.style.backgroundColor = 'black';
+    if (isMouseDown || event.type === 'mousedown'){
 
-    } else if (paintMode === 'rainbow'){
-        event.target.style.backgroundColor = getRandomColor();
-    } else if (paintMode === 'erase'){
-        event.target.style.backgroundColor = 'white';
-    } else if (paintMode === 'custom'){
-        event.target.style.backgroundColor = paintColor;
+        if (paintMode === 'black'){
+            event.target.style.backgroundColor = 'black';
+        } else if (paintMode === 'rainbow'){
+            event.target.style.backgroundColor = getRandomColor();
+        } else if (paintMode === 'erase'){
+            event.target.style.backgroundColor = 'white';
+        } else if (paintMode === 'custom'){
+            event.target.style.backgroundColor = paintColor;
+        }
+
     }
 }
 
